@@ -1,16 +1,11 @@
 venv/
 __pycache__/
 .ipynb_checkpoints/
-models/
 *.pyc
+.DS_Store
 
 # Processed data
 data/processed/
 
 # Trained models
 models/
-
-# Python cache
-__pycache__/
-*.pyc
-
