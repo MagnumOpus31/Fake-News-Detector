@@ -1,7 +1,9 @@
 import joblib
 from pathlib import Path
 
-# Get the project root directory
+from preprocessing import preprocess_text
+
+# Get project root directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Paths to saved model and vectorizer
@@ -14,24 +16,26 @@ vectorizer = joblib.load(VECTORIZER_PATH)
 
 
 def predict_news(text):
-    # Convert article text into TF-IDF features
-    text_tfidf = vectorizer.transform([text])
+    # Apply the same preprocessing used during training
+    cleaned_text = preprocess_text(text)
+
+    # Convert cleaned text into TF-IDF features
+    text_tfidf = vectorizer.transform([cleaned_text])
 
     # Make prediction
     prediction = model.predict(text_tfidf)[0]
-    score=model.decision_function(text_tfidf)[0]
 
     if prediction == 0:
-        label="FAKE"
+        label = "FAKE"
     else:
-        label="REAL"
-    return label, score
+        label = "REAL"
+
+    return label
 
 
 if __name__ == "__main__":
     article = input("Enter news article: ")
 
-    result, score = predict_news(article)
+    result = predict_news(article)
 
     print("\nPrediction:", result)
-    print("Decision score:", score) 
