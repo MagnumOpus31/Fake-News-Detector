@@ -53,19 +53,20 @@ st.markdown("""
     /* Hero section */
     .hero {
         text-align: center;
-        padding: 2rem 0 1.5rem 0;
+        padding: 1rem 0 2rem 0;
     }
 
     .hero-icon {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
+        font-size: 2.8rem;
+        margin-bottom: 0.3rem;
     }
 
     .hero-title {
-        font-size: 3rem;
+        font-size: 3.2rem;
         font-weight: 800;
-        letter-spacing: -1.5px;
-        margin-bottom: 0.5rem;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        color: #f5f7fa;
     }
 
     .hero-title span {
@@ -73,10 +74,10 @@ st.markdown("""
     }
 
     .hero-subtitle {
-        color: #9aa4b2;
-        font-size: 1.05rem;
-        max-width: 650px;
-        margin: auto;
+        color: #8d98a7;
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0.8rem auto 0 auto;
         line-height: 1.6;
     }
 
@@ -216,26 +217,23 @@ vectorizer = joblib.load(VECTORIZER_PATH)
 # --------------------------------------------------
 
 st.markdown(
-    '<div class="hero-icon">📰</div>',
+    "<h1 style='text-align: center; font-size: 3.2rem; "
+    "margin-bottom: 0;'>"
+    "Truth<span style='color:#6ea8fe;'>Lens</span>"
+    "</h1>",
     unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="hero-title">Truth<span>Lens</span></div>',
+    "<p style='text-align: center; color:#8d98a7; "
+    "font-size:1rem; margin-top:0.8rem;'>"
+    "AI-powered analysis for identifying potentially "
+    "misleading news content."
+    "</p>",
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <div class="hero-subtitle">
-        An AI-powered news classification system that analyzes
-        article content and predicts whether it is likely to be
-        real or fake.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
+st.markdown("")
 # --------------------------------------------------
 # Model information
 # --------------------------------------------------
@@ -286,6 +284,16 @@ article = st.text_area(
     ),
     label_visibility="collapsed"
 )
+
+if article:
+    word_count = len(article.split())
+    character_count = len(article)
+
+    st.caption(
+        f"{word_count:,} words · {character_count:,} characters"
+    )
+else:
+    st.caption("Paste an article above to begin analysis.")
 
 # --------------------------------------------------
 # Prediction
