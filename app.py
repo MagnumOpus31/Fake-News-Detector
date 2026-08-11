@@ -211,6 +211,8 @@ VECTORIZER_PATH = BASE_DIR / "models" / "tfidf_vectorizer.pkl"
 model = joblib.load(MODEL_PATH)
 vectorizer = joblib.load(VECTORIZER_PATH)
 
+def clear_article():
+    st.session_state["article_input"] = ""
 
 # --------------------------------------------------
 # Hero section
@@ -276,6 +278,7 @@ st.markdown(
 
 article = st.text_area(
     "News Article",
+    key="article_input",
     height=260,
     placeholder=(
         "Paste the full news article here...\n\n"
@@ -303,7 +306,25 @@ else:
 # Prediction
 # --------------------------------------------------
 
-if st.button("Analyze Article"):
+col1, col2 = st.columns(2)
+
+with col1:
+    analyze_clicked = st.button(
+        "Analyze Article",
+        use_container_width=True
+    )
+
+with col2:
+    st.button(
+        "Clear Article",
+        use_container_width=True,
+        on_click=clear_article
+    )
+
+
+
+
+if analyze_clicked:
 
     if not article.strip():
 
