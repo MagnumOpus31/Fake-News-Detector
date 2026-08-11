@@ -35,6 +35,27 @@ st.markdown("""
         visibility: hidden;
     }
 
+    /* Streamlit metrics */
+
+[data-testid="stMetric"] {
+    background: rgba(255,255,255,0.03);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+[data-testid="stMetricLabel"] {
+    color: #aeb8c5 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #f5f7fa !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+}
+
     footer {
         visibility: hidden;
     }
@@ -55,6 +76,8 @@ st.markdown("""
         text-align: center;
         padding: 1rem 0 2rem 0;
     }
+
+    
 
     .hero-icon {
         font-size: 2.8rem;
@@ -360,6 +383,106 @@ if analyze_clicked:
             st.caption(
                 f"Model decision score: {score:.4f}"
             )
+# --------------------------------------------------
+# How TruthLens Works
+# --------------------------------------------------
+
+st.markdown("---")
+
+st.markdown(
+    "<h2 style='text-align:center;'>How TruthLens Works</h2>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p style='text-align:center; color:#8d98a7; "
+    "margin-bottom:2rem;'>"
+    "A four-step machine learning pipeline analyzes the "
+    "article and predicts whether it is likely to be real or fake."
+    "</p>",
+    unsafe_allow_html=True
+)
+
+step1, step2, step3, step4 = st.columns(4)
+
+with step1:
+    with st.container(border=True):
+        st.markdown("### 🧹")
+        st.markdown("**01 — Preprocess**")
+        st.caption(
+            "Clean URLs, punctuation, stopwords and unnecessary text."
+        )
+
+with step2:
+    with st.container(border=True):
+        st.markdown("### 🔢")
+        st.markdown("**02 — TF-IDF**")
+        st.caption(
+            "Convert the cleaned article into numerical features."
+        )
+
+with step3:
+    with st.container(border=True):
+        st.markdown("### 🧠")
+        st.markdown("**03 — Linear SVM**")
+        st.caption(
+            "Analyze the extracted features using the trained classifier."
+        )
+
+with step4:
+    with st.container(border=True):
+        st.markdown("### 🎯")
+        st.markdown("**04 — Prediction**")
+        st.caption(
+            "Classify the article as REAL or FAKE."
+        )
+# --------------------------------------------------
+# Model Information
+# --------------------------------------------------
+
+st.markdown("---")
+
+st.markdown(
+    "<h2 style='text-align:center;'>Model Information</h2>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p style='text-align:center; color:#8d98a7;'>"
+    "Technical details behind the TruthLens classification system."
+    "</p>",
+    unsafe_allow_html=True
+)
+
+info1, info2, info3, info4 = st.columns(4)
+
+with info1:
+    st.metric(
+        "Model",
+        "Linear SVM"
+    )
+
+with info2:
+    st.metric(
+        "Features",
+        "TF-IDF"
+    )
+
+with info3:
+    st.metric(
+        "Task",
+        "Binary"
+    )
+
+with info4:
+    st.metric(
+        "Test Accuracy",
+        "99.27%"
+    )
+st.caption(
+    "NLP preprocessing: lowercase conversion, URL and HTML removal, "
+    "punctuation cleaning, stopword removal and lemmatization."
+)
 # --------------------------------------------------
 # Footer
 # --------------------------------------------------
