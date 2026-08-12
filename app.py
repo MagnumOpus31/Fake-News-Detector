@@ -233,6 +233,31 @@ VECTORIZER_PATH = BASE_DIR / "models" / "tfidf_vectorizer.pkl"
 
 model = joblib.load(MODEL_PATH)
 vectorizer = joblib.load(VECTORIZER_PATH)
+def get_top_features(text_tfidf, model, vectorizer, prediction, top_n=5):
+
+    feature_names = vectorizer.get_feature_names_out()
+
+    # TF-IDF values for this article
+    tfidf_values = text_tfidf.toarray()[0]
+
+    # SVM learned coefficients
+    coefficients = model.coef_[0]
+
+    # Contribution of each word
+    contributions = tfidf_values * coefficients
+
+    if prediction == 1:
+        # Positive contributions support REAL
+        indices = contributions.argsort()[-top_n:][::-1]
+    else:
+        # Negative contributions support FAKE
+        indices = contributions.argsort()[:top_n]
+
+    return [
+        (feature_names[i], contributions[i])
+        for i in indices
+        if tfidf_values[i] > 0
+    ]
 
 def clear_article():
     st.session_state["article_input"] = ""
@@ -366,6 +391,12 @@ if analyze_clicked:
 
         # Get SVM decision score
         score = model.decision_function(text_tfidf)[0]
+        top_features = get_top_features(
+            text_tfidf,
+            model,
+            vectorizer,
+            prediction
+        )
 
         # Display result
         if prediction == 0:
@@ -375,6 +406,10 @@ if analyze_clicked:
             st.caption(
                 f"Model decision score: {score:.4f}"
             )
+            st.info(
+                "The model's decision score is on the FAKE side "
+                "of the classification boundary."
+            )
 
         else:
 
@@ -382,6 +417,22 @@ if analyze_clicked:
 
             st.caption(
                 f"Model decision score: {score:.4f}"
+            )
+            st.info(
+                "The model's decision score is on the REAL side "
+                "of the classification boundary."
+            )
+
+        st.markdown("### 🔍 Why this prediction?")
+        if top_features:
+            for word,contribution in top_features:
+                st.markdown(
+                    f"- **{word}** ({contribution:+.4f})"
+                )
+        else:
+            st.caption(
+                "No significant vocabulary features were found "
+                "for this article."
             )
 # --------------------------------------------------
 # How TruthLens Works
