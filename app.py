@@ -293,7 +293,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("""
     <div class="info-card">
-        <div class="info-number">99.27%</div>
+        <div class="info-number">99.83%</div>
         <div class="info-label">Test Accuracy</div>
     </div>
     """, unsafe_allow_html=True)
@@ -534,6 +534,107 @@ st.caption(
     "NLP preprocessing: lowercase conversion, URL and HTML removal, "
     "punctuation cleaning, stopword removal and lemmatization."
 )
+
+# --------------------------------------------------
+# Model Performance
+# --------------------------------------------------
+
+st.markdown("---")
+
+st.markdown(
+    "<h2 style='text-align:center;'>Model Performance</h2>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p style='text-align:center; color:#aeb8c5;'>"
+    "Evaluation results on the duplicate-free test dataset."
+    "</p>",
+    unsafe_allow_html=True
+)
+
+perf1, perf2, perf3, perf4 = st.columns(4)
+
+with perf1:
+    st.metric("Accuracy", "99.83%")
+
+with perf2:
+    st.metric("Precision", "99.81%")
+
+with perf3:
+    st.metric("Recall", "99.88%")
+
+with perf4:
+    st.metric("F1 Score", "99.85%")
+
+st.markdown("### Confusion Matrix")
+
+st.markdown(
+    "<p style='color:#9fb4d0;'>Actual vs Predicted</p>",
+    unsafe_allow_html=True
+)
+
+# Column headers
+cm1, cm2, cm3 = st.columns([1, 1, 1])
+
+with cm1:
+    st.markdown("")
+
+with cm2:
+    st.markdown(
+        "<div class='cm-header'>Predicted FAKE</div>",
+        unsafe_allow_html=True
+    )
+
+with cm3:
+    st.markdown(
+        "<div class='cm-header'>Predicted REAL</div>",
+        unsafe_allow_html=True
+    )
+
+
+# FAKE row
+cm1, cm2, cm3 = st.columns([1, 1, 1])
+
+with cm1:
+    st.markdown(
+        "<div class='cm-label'>Actual FAKE</div>",
+        unsafe_allow_html=True
+    )
+
+with cm2:
+    st.markdown(
+        "<div class='cm-cell'>3572</div>",
+        unsafe_allow_html=True
+    )
+
+with cm3:
+    st.markdown(
+        "<div class='cm-cell'>8</div>",
+        unsafe_allow_html=True
+    )
+
+
+# REAL row
+cm1, cm2, cm3 = st.columns([1, 1, 1])
+
+with cm1:
+    st.markdown(
+        "<div class='cm-label'>Actual REAL</div>",
+        unsafe_allow_html=True
+    )
+
+with cm2:
+    st.markdown(
+        "<div class='cm-cell'>5</div>",
+        unsafe_allow_html=True
+    )
+
+with cm3:
+    st.markdown(
+        "<div class='cm-cell'>4209</div>",
+        unsafe_allow_html=True
+    )
 # --------------------------------------------------
 # Footer
 # --------------------------------------------------
