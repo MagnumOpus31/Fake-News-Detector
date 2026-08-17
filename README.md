@@ -1,23 +1,28 @@
-# Fake News Detector
+# 🔎 TruthLens — Fake News Detection System
 
-An AI/ML-based text classification system that predicts whether a news article is **Fake** or **Real** using Natural Language Processing (NLP), TF-IDF, and machine learning.
+An NLP-powered machine learning system that analyzes news articles and predicts whether they are **REAL** or **FAKE**.
 
-## Overview
+TruthLens uses **TF-IDF feature extraction** and a **Linear SVM classifier**, combined with an interactive Streamlit interface that provides prediction explanations and model performance metrics.
 
-The goal of this project is to build a machine learning pipeline that can analyze the text of a news article and classify it as either fake or real.
+---
 
-The project includes:
+## 🚀 Overview
 
-- Exploratory Data Analysis (EDA)
-- Text preprocessing
-- TF-IDF feature extraction
-- Multiple machine learning models
-- Model evaluation and comparison
-- Error analysis
-- Saved model and vectorizer
-- Standalone prediction pipeline
+The goal of TruthLens is to demonstrate an end-to-end machine learning pipeline for text classification — from raw news data and NLP preprocessing to model training, evaluation, and deployment through a web interface.
 
-## Machine Learning Pipeline
+The system can:
+
+- 🧹 Clean and preprocess news articles
+- 🔢 Convert text into numerical TF-IDF features
+- 🧠 Classify articles using Linear SVM
+- 🎯 Predict whether an article is REAL or FAKE
+- 🔍 Show important vocabulary features behind predictions
+- 📊 Display model performance metrics
+- 🌐 Provide an interactive Streamlit web application
+
+---
+
+## 🧠 Machine Learning Pipeline
 
 ```text
 Raw News Article
@@ -26,6 +31,10 @@ Text Preprocessing
        ↓
 TF-IDF Vectorization
        ↓
-Machine Learning Model
+Linear SVM Classifier
        ↓
-FAKE / REAL
+Prediction + Decision Score
+       ↓
+REAL / FAKE
+       ↓
+Prediction Explanation
