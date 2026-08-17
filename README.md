@@ -20,8 +20,18 @@ The system can:
 - 📊 Display model performance metrics
 - 🌐 Provide an interactive Streamlit web application
 
+
 ---
 
+## 🖥️ Application Preview
+
+### TruthLens Interface
+
+The Streamlit application provides an interactive interface for submitting and analyzing news articles.
+
+![TruthLens Interface](screenshots/truthlens-home.png)
+
+---
 ## 🧠 Machine Learning Pipeline
 
 ```text
