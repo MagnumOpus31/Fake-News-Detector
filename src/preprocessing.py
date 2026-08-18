@@ -1,13 +1,15 @@
 import re
 import nltk
-
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-# Load NLTK resources
+# Download required NLTK resources
+nltk.download("stopwords")
+nltk.download("wordnet")
+nltk.download("omw-1.4")
+
 stop_words = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
-
 
 def preprocess_text(text):
     # Convert to lowercase
