@@ -31,6 +31,12 @@ The Streamlit application provides an interactive interface for submitting and a
 
 ![TruthLens Interface](screenshots/truthlens-home.png)
 
+### Prediction & Explainability
+
+TruthLens provides the model's prediction along with its decision score and the vocabulary features that contributed to the classification.
+
+![TruthLens Prediction](screenshots/truthlens-prediction.png)
+
 ---
 ## 🧠 Machine Learning Pipeline
 
