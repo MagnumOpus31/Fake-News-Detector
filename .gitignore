@@ -7,5 +7,3 @@ __pycache__/
 # Processed data
 data/processed/
 
-# Trained models
-models/
