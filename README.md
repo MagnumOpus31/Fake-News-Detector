@@ -37,6 +37,12 @@ TruthLens provides the model's prediction along with its decision score and the 
 
 ![TruthLens Prediction](screenshots/truthlens-prediction.png)
 
+### Model Performance
+
+TruthLens was evaluated on a duplicate-free test dataset using standard classification metrics.
+
+![TruthLens Model Performance](screenshots/truthlens-performance.png)
+
 ---
 ## 🧠 Machine Learning Pipeline
 
